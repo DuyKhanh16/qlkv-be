@@ -16,10 +16,10 @@ public class IntCaculateEnquiry {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "LoanID" ,nullable = false)
+    @Column(name = "LoanID", nullable = false)
     private int loanId;
 
-    @Column(name = "DDID",nullable = false)
+    @Column(name = "DDID", nullable = false)
     private int ddId;
 
     @Column(name = "PriOut")

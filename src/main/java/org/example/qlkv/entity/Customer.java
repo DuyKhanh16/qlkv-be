@@ -4,61 +4,65 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table (name = "Customer")
+@Table(name = "Customer")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private int id;
 
-    @Column (name = "Name" ,columnDefinition = "nvarchar(500)")
+    @Column(name = "Name", columnDefinition = "nvarchar(500)")
     private String name;
 
-    @Column (name = "Abbreviation" ,columnDefinition = "nvarchar(255)")
-    private String Abbreviation;
+    @Column(name = "Abbreviation", columnDefinition = "nvarchar(255)")
+    private String abbreviation;
 
-    @Column (name = "Address" ,columnDefinition = "nvarchar(max)")
+    @Column(name = "Address", columnDefinition = "nvarchar(max)")
     private String address;
 
-    @Column (name = "BusRegist" ,columnDefinition = "nchar(40)")
+    @Column(name = "BusRegist", columnDefinition = "nchar(40)")
     private String BusRegist;
 
-    @Column (name = "MangUser")
+    @Column(name = "MangUser")
     private String MangUser;
 
-    @Column (name ="InputedDate")
-    private Date InputedDate;
+    @Column(name = "InputedDate")
+    private LocalDateTime InputedDate;
 
-    @Column (name ="InputedUser")
+    @Column(name = "InputedUser")
     private String InputedUser;
 
-    @Column (name = "CharterCapital")
+    @Column(name = "CharterCapital")
     private BigDecimal CharterCapital;
 
-    @Column (name = "RecentRevenue")
+    @Column(name = "RecentRevenue")
     private BigDecimal RecentRevenue;
 
-    @Column (name = "RecentProfit")
+    @Column(name = "RecentProfit")
     private BigDecimal RecentProfit;
 
-    @Column (name = "CusAccountNumber")
+    @Column(name = "CusAccountNumber")
     private String CusAccountNumber;
 
     @Column(name = "CustomerType")
     private Integer CustomerType;
 
-    @Column (name = "Gender")
+    @Column(name = "Gender")
     private Integer Gender;
 
-    @Column (name = "DateOfBirth")
-    private Date DateOfBirth;
+    @Column(name = "DateOfBirth")
+    private LocalDate DateOfBirth;
 
-    @Column (name = "DateOfIssue")
-    private Date DateOfIssue;
+    @Column(name = "DateOfIssue")
+    private LocalDate DateOfIssue;
+
+    @Column(name = "PlaceOfIssue")
+    private String placeOfIssue;
 
     @Column(name = "Phone")
     private String Phone;
@@ -68,4 +72,7 @@ public class Customer {
 
     @Column(name = "BankName")
     private String BankName;
+
+    public void getInputedDate(LocalDateTime mow) {
+    }
 }

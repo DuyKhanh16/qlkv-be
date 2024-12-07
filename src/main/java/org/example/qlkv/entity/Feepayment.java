@@ -35,7 +35,7 @@ public class Feepayment {
     @Column(name = "CCY", length = 3)
     private String currency;
 
-    @Column(name = "Amount" )
+    @Column(name = "Amount")
     private Integer amount;
 
     @Column(name = "Status", length = 50)

@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table (name = "Project")
+@Table(name = "Project")
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,5 +73,6 @@ public class Project {
     private BigDecimal quantity;
 
     @Column(name = "Unit")
-    private String unit;;
+    private String unit;
+    ;
 }

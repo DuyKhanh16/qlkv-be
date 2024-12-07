@@ -57,8 +57,5 @@ public class QLNDUser {
     @Column(name = "MangUser")
     private String mangUser;
 
-//    @PrePersist
-//    public void prePersist() {
-//        String il = UUID.randomUUID().toString();
-//    }
+
 }

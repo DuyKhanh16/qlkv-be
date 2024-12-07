@@ -1,6 +1,7 @@
 package org.example.qlkv.DTO;
 
 import jakarta.validation.constraints.NotEmpty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data

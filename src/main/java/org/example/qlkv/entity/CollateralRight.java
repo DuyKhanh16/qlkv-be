@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table (name = "CollateralRight")
+@Table(name = "CollateralRight")
 public class CollateralRight {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

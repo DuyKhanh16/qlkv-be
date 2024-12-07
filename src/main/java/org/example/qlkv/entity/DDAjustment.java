@@ -39,7 +39,7 @@ public class DDAjustment {
     @Column(name = "InputedDate")
     private LocalDateTime inputedDate;
 
-    @Column (name = "InputedUser")
+    @Column(name = "InputedUser")
     private String inputedUser;
 
 }
