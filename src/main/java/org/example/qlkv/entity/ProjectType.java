@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -18,7 +19,7 @@ public class ProjectType {
     private String typeDesc;
 
     @Column(name = "InputedDate")
-    private LocalDate inputedDate;
+    private LocalDateTime inputedDate;
 
     @Column(name = "InputedUser")
     private String inputedUser;
