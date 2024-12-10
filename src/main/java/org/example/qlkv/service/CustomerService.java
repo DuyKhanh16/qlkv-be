@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -36,6 +37,8 @@ public class CustomerService {
     public Customer checkName (String name) {
         return customerRepository.findByName(name);
     }
+
+//    Tạo 1 customer từ dot
     public Object createCustomer(CreateCustomDto customer) {
 
         Customer newCustomer = new Customer();
@@ -139,5 +142,24 @@ public class CustomerService {
         }catch (Exception e) {
             throw new RuntimeException("Định dạng ngày không đúng");
         }
+    }
+
+//    xóa customer
+    public List<String> deleteCustomer(List<Integer> listID) {
+        List<String> customerList = new ArrayList<>();
+        for (Integer id : listID) {
+            Customer customer=customerRepository.findRelationshipProject(id);
+            if (customer != null) {
+                customerList.add(customer.getName());
+            }else {
+                customerRepository.deleteById(id);
+            }
+
+        }
+        return customerList;
+    }
+//    Update customer
+    public Customer updateCustomer(Customer customer) {
+        return customerRepository.save(customer);
     }
 }

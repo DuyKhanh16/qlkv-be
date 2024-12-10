@@ -64,4 +64,32 @@ public class CustomerControler {
         }
     }
 
+//    Xóa customer
+    @PostMapping("/delete")
+    public ResponseEntity<?> deleteCustomer(@RequestBody List<Integer> listID) {
+        System.out.println(listID);
+        List<String> listErro = customerService.deleteCustomer(listID);
+        if (listErro.isEmpty()) {
+            return new ResponseEntity<>(
+                    new ApiResponse<>("Xóa thaành công",null),
+                    HttpStatus.OK
+            );
+        }else {
+            return new ResponseEntity<>(
+                    new ApiResponse<>("Không thể xóa" + listErro.toString() ,null),
+                    HttpStatus.CONFLICT
+            );
+        }
+
+    }
+
+//    Update one customer
+    @PatchMapping("/update-one")
+    public ResponseEntity<?> updateOneCustomer (@RequestBody Customer customer) {
+       customerService.updateCustomer(customer);
+        return new ResponseEntity<>(
+                new ApiResponse<>("Cập nhật khách hàng thành công ",null),
+                HttpStatus.OK
+        );
+    }
 }

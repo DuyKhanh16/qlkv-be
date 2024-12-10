@@ -12,6 +12,7 @@ import org.example.qlkv.DTO.CreateUserDTO;
 import org.example.qlkv.DTO.UserLoginResponsi;
 import org.example.qlkv.DTO.request.IntrospectRequest;
 import org.example.qlkv.DTO.response.IntrospectResponse;
+import org.example.qlkv.entity.Customer;
 import org.example.qlkv.entity.QLNDUser;
 import org.example.qlkv.repository.QLNDuserRepository;
 import org.mindrot.jbcrypt.BCrypt;
@@ -23,6 +24,7 @@ import java.text.ParseException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
