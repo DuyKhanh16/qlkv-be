@@ -157,7 +157,7 @@ public class Loan {
     private String inputedUser;
 
     @Column(name = "LoanPeriod")
-    private int loanPeriod;
+    private String loanPeriod;
 
     @Column(name = "EquityCapital")
     private BigDecimal equityCapital;

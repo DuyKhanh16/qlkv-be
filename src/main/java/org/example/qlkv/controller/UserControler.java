@@ -7,13 +7,16 @@ import lombok.experimental.NonFinal;
 import org.example.qlkv.DTO.*;
 import org.example.qlkv.DTO.request.IntrospectRequest;
 import org.example.qlkv.DTO.response.IntrospectResponse;
+import org.example.qlkv.DTO.response.UserSelectTDO;
 import org.example.qlkv.config.NimbusJWTConfig;
+import org.example.qlkv.exception.Messeger;
 import org.example.qlkv.service.QLNDuserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +25,7 @@ import java.text.ParseException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/auth/api/user")
@@ -82,7 +86,10 @@ public class UserControler {
         );
     };
 
-
-
+    @GetMapping("/list-select")
+    public ResponseEntity<?> listSelect() {
+        List<UserSelectTDO> list =userService.getSelect();
+        return new ResponseEntity<>(new ApiResponse<>(Messeger.SUCCESS.getMessage(), list), HttpStatus.OK);
+    }
 
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,10 +26,10 @@ public class Project {
     private String projectName;
 
     @Column(name = "StartDate")
-    private LocalDateTime startDate;
+    private LocalDate startDate;
 
     @Column(name = "EndDate")
-    private LocalDateTime endDate;
+    private LocalDate endDate;
 
     @Column(name = "Budget")
     private BigDecimal budget;

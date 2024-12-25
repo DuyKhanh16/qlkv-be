@@ -3,7 +3,9 @@ package org.example.qlkv.controller;
 import org.example.qlkv.DTO.ApiResponse;
 import org.example.qlkv.DTO.request.CreateCustomDto;
 import org.example.qlkv.DTO.request.CustomerExcelDTO;
+import org.example.qlkv.DTO.response.CustomerSelectDTO;
 import org.example.qlkv.entity.Customer;
+import org.example.qlkv.exception.Messeger;
 import org.example.qlkv.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -67,11 +69,10 @@ public class CustomerControler {
 //    Xóa customer
     @PostMapping("/delete")
     public ResponseEntity<?> deleteCustomer(@RequestBody List<Integer> listID) {
-        System.out.println(listID);
         List<String> listErro = customerService.deleteCustomer(listID);
         if (listErro.isEmpty()) {
             return new ResponseEntity<>(
-                    new ApiResponse<>("Xóa thaành công",null),
+                    new ApiResponse<>("Xóa thành công",null),
                     HttpStatus.OK
             );
         }else {
@@ -92,4 +93,10 @@ public class CustomerControler {
                 HttpStatus.OK
         );
     }
+    @GetMapping("/list-select")
+    public ResponseEntity<?> getListSelect(){
+       List<CustomerSelectDTO>list = customerService.getListSelect();
+       return new ResponseEntity<>(new ApiResponse<>(Messeger.SUCCESS.getMessage(),list ), HttpStatus.OK);
+    }
 }
+

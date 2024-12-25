@@ -12,6 +12,7 @@ import org.example.qlkv.DTO.CreateUserDTO;
 import org.example.qlkv.DTO.UserLoginResponsi;
 import org.example.qlkv.DTO.request.IntrospectRequest;
 import org.example.qlkv.DTO.response.IntrospectResponse;
+import org.example.qlkv.DTO.response.UserSelectTDO;
 import org.example.qlkv.entity.Customer;
 import org.example.qlkv.entity.QLNDUser;
 import org.example.qlkv.repository.QLNDuserRepository;
@@ -27,6 +28,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -69,7 +71,16 @@ public class QLNDuserService {
         return null;
     }
 
-
+    public List<UserSelectTDO> getSelect (){
+        List<Tuple> result = userRepository.getLoginNameAndFullName();
+        if (!result.isEmpty()) {
+            return result.stream().map(r->new UserSelectTDO(
+                    r.get("loginName",String.class),
+                    r.get("fullName", String.class)
+            ))  .collect(Collectors.toList());
+        }
+        return null;
+    }
 
 
 

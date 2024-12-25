@@ -10,9 +10,8 @@ import java.time.LocalDateTime;
 @Table(name = "DDAjustType")
 public class DDAjustType {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private int id;
+    private String id;
 
     @Column(name = "Description")
     private String description;

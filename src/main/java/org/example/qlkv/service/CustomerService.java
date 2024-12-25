@@ -1,9 +1,12 @@
 package org.example.qlkv.service;
 
+import jakarta.persistence.Tuple;
 import org.example.qlkv.DTO.request.CreateCustomDto;
 import org.example.qlkv.DTO.request.CustomerExcelDTO;
+import org.example.qlkv.DTO.response.CustomerSelectDTO;
 import org.example.qlkv.entity.Customer;
 import org.example.qlkv.repository.CustomerRepo;
+import org.example.qlkv.repository.LoanRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,9 @@ public class CustomerService {
     @Autowired
     private CustomerRepo customerRepository;
 
+    @Autowired
+    private LoanRepo loanRepository;
+
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
     LocalDateTime mow = LocalDateTime.now();
@@ -38,7 +44,7 @@ public class CustomerService {
         return customerRepository.findByName(name);
     }
 
-//    Tạo 1 customer từ dot
+//    Tạo 1 customer từ dto
     public Object createCustomer(CreateCustomDto customer) {
 
         Customer newCustomer = new Customer();
@@ -74,6 +80,7 @@ public class CustomerService {
 
         return customerRepository.saveAll(customers);
     }
+
     private Customer processCustomer(Customer customer, String mangUser, String inputedUser) {
         // Thêm thông tin hệ thống
         customer.setMangUser(mangUser);
@@ -82,16 +89,23 @@ public class CustomerService {
 
         return customer;
     }
+
     private boolean isValidCustomer(Customer customer) {
+        Customer checkAbb= checkAbbreviation(customer.getAbbreviation());
+        if (checkAbb != null){
+            throw new RuntimeException(customer.getAbbreviation()+" đã tồn tại trong hệ thống");
+        }
+
         Optional<Customer> existingCustomer = customerRepository.findByAbbreviationAndName(
                 customer.getAbbreviation(),
                 customer.getName()
         );
         if (existingCustomer.isPresent()) {
-            throw new RuntimeException("Tên khách hàng hoặc tên viết tắt đã tồn tại trong hệ thống");
+            throw new RuntimeException(  customer.getAbbreviation()+ " " +customer.getName()+ "đã tồn tại trong hệ thống");
         }
         return existingCustomer.isEmpty(); // Chỉ lưu nếu không trùng
     }
+
     public Customer convertToEntity(CustomerExcelDTO dto) {
         Customer customer = new Customer();
         customer.setName(dto.getName());
@@ -160,6 +174,20 @@ public class CustomerService {
     }
 //    Update customer
     public Customer updateCustomer(Customer customer) {
+
         return customerRepository.save(customer);
+    }
+
+    public List<CustomerSelectDTO> getListSelect (){
+       List<Tuple> result= customerRepository.getIdAndName();
+       if (!result.isEmpty()){
+           return result.stream().map(row->new CustomerSelectDTO(
+                   row.get("id", Integer.class),
+                   row.get("name", String.class),
+                   row.get("abbreviation", String.class)
+           ))
+                   .collect(Collectors.toList());
+       }
+       return null;
     }
 }

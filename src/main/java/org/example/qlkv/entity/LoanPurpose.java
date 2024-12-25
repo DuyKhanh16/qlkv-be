@@ -3,6 +3,7 @@ package org.example.qlkv.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -18,7 +19,7 @@ public class LoanPurpose {
     private String purposeName;
 
     @Column(name = "InputedDate")
-    private Date inputedDate;
+    private LocalDateTime inputedDate;
 
     @Column(name = "InputedUser")
     private String inputedUser;
