@@ -5,9 +5,10 @@ import lombok.Getter;
 @Getter
 public enum Messeger {
      DELETE_OK("Xóa thành công"),
-    DELETE_FAIL("Không tể xóa"),
+    DELETE_FAIL(" Không thể xóa"),
     SUCCESS("Thành công"),
-    CONFLICT(" Đã tồn tại")
+    CONFLICT(" Đã tồn tại"),
+    NOTFOUND("Không tồn tại")
     ;
 
 

@@ -13,91 +13,91 @@ public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "LoanID")
-    private int loanId;
+    private Integer loanId;
 
     @Column(name = "ContractNo")
     private String contractNo;
 
     @Column(name = "BorrowerID")
-    private int borrowerId;
+    private Integer borrowerId;
 
     @Column(name = "LenderID")
-    private int lenderId;
+    private Integer lenderId;
 
     @Column(name = "UsedCapID")
-    private int usedCapId;
+    private Integer usedCapId;
 
     @Column(name = "ContractType")
     private String contractType;
 
     @Column(name = "ProjectID1")
-    private int projectId1;
+    private Integer projectId1;
 
     @Column(name = "ProjectID2")
-    private int projectId2;
+    private Integer projectId2;
 
     @Column(name = "ProjectID3")
-    private int projectId3;
+    private Integer projectId3;
 
     @Column(name = "ProjectID4")
-    private int projectId4;
+    private Integer projectId4;
 
     @Column(name = "ProjectID5")
-    private int projectId5;
+    private Integer projectId5;
 
     @Column(name = "ProjectID6")
-    private int projectId6;
+    private Integer projectId6;
 
     @Column(name = "ProjectID7")
-    private int projectId7;
+    private Integer projectId7;
 
     @Column(name = "ProjectID8")
-    private int projectId8;
+    private Integer projectId8;
 
     @Column(name = "ProjectID9")
-    private int projectId9;
+    private Integer projectId9;
 
     @Column(name = "ProjectID10")
-    private int projectId10;
+    private Integer projectId10;
 
     @Column(name = "ProjectID11")
-    private int projectId11;
+    private Integer projectId11;
 
     @Column(name = "ProjectID12")
-    private int projectId12;
+    private Integer projectId12;
 
     @Column(name = "ProjectID13")
-    private int projectId13;
+    private Integer projectId13;
 
     @Column(name = "ProjectID14")
-    private int projectId14;
+    private Integer projectId14;
 
     @Column(name = "ProjectID15")
-    private int projectId15;
+    private Integer projectId15;
 
     @Column(name = "LoanName")
     private String loanName;
 
     @Column(name = "PurposeID1")
-    private int purposeId1;
+    private Integer purposeId1;
 
     @Column(name = "PurposeID2")
-    private int purposeId2;
+    private Integer purposeId2;
 
     @Column(name = "PurposeID3")
-    private int purposeId3;
+    private Integer purposeId3;
 
     @Column(name = "PurposeID4")
-    private int purposeId4;
+    private Integer purposeId4;
 
     @Column(name = "PurposeID5")
-    private int purposeId5;
+    private Integer purposeId5;
 
     @Column(name = "PurposeID6")
-    private int purposeId6;
+    private Integer purposeId6;
 
     @Column(name = "PurposeID7")
-    private int purposeId7;
+    private Integer purposeId7;
 
     @Column(name = "LoanAmountPurpose1")
     private BigDecimal loanAmountPurpose1;

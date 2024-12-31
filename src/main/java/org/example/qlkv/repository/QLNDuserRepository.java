@@ -16,7 +16,7 @@ public interface QLNDuserRepository extends JpaRepository<QLNDUser, UUID> {
 
     QLNDUser findByLoginName(String loginName);
 
-    @Query(value = "SELECT u.LoginName AS loginName, u.FullName AS fullName, u.Password AS password, g.Name AS Name FROM QLKV_UAT.dbo.QLNDUser u JOIN QLKV_UAT.dbo.QLNDUserGroup ug ON u.Id = ug.UserId JOIN QLKV_UAT.dbo.QLNDGroup g ON ug.GroupId = g.Id WHERE u.LoginName = :loginName", nativeQuery = true)
+    @Query(value = "SELECT u.LoginName AS loginName, u.FullName AS fullName, u.Password AS password, g.Name AS Name FROM QLNDUser u JOIN QLNDUserGroup ug ON u.Id = ug.UserId JOIN QLNDGroup g ON ug.GroupId = g.Id WHERE u.LoginName = :loginName", nativeQuery = true)
     List<Tuple> getUserLogin(@Param("loginName") String loginName);
 
     @Query("select u.loginName as loginName , u.fullName as fullName from QLNDUser u")

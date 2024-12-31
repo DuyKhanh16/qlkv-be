@@ -14,7 +14,11 @@ import org.example.qlkv.DTO.request.IntrospectRequest;
 import org.example.qlkv.DTO.response.IntrospectResponse;
 import org.example.qlkv.DTO.response.UserSelectTDO;
 import org.example.qlkv.entity.Customer;
+import org.example.qlkv.entity.QLNDGroup;
 import org.example.qlkv.entity.QLNDUser;
+import org.example.qlkv.entity.QLNDUserGroup;
+import org.example.qlkv.repository.QLNDGroupRepo;
+import org.example.qlkv.repository.QLNDUserGroupRepo;
 import org.example.qlkv.repository.QLNDuserRepository;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +32,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -37,6 +42,10 @@ public class QLNDuserService {
     @Autowired
     private QLNDuserRepository userRepository;
 
+   @Autowired
+   private QLNDUserGroupRepo userGroupRepository;
+
+  UUID ROLE_USER = UUID.fromString("6C580FB4-6AB2-4264-A0AC-8A6BBBC93A58");
     public Boolean createNewUser(CreateUserDTO userNew) {
 //         Kiểm tra user đã tồn tại chưa
         QLNDUser checkUser = userRepository.findByLoginName(userNew.getLoginName());
@@ -53,7 +62,12 @@ public class QLNDuserService {
         user.setStatus("ACTIVE");
         user.setCreateDate(String.valueOf(LocalDate.now()));
         user.setMangUser(String.valueOf(userRepository.findByLoginName(userNew.getMangUser()).getId()));
-        userRepository.save(user);
+       QLNDUser resuly= userRepository.save(user);
+        System.out.println(resuly);
+        QLNDUserGroup newRecod = new QLNDUserGroup();
+        newRecod.setUserId(resuly.getId());
+        newRecod.setGroupId(ROLE_USER);
+        userGroupRepository.save(newRecod);
         return true;
     }
 

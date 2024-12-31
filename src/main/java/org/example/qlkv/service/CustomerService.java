@@ -129,9 +129,9 @@ public class CustomerService {
 
     private Integer convertCustomerType(String customerType) {
         if ("Tổ chức".equalsIgnoreCase(customerType)) {
-            return 1;
-        } else if ("Cá nhân".equalsIgnoreCase(customerType)) {
             return 2;
+        } else if ("Cá nhân".equalsIgnoreCase(customerType)) {
+            return 1;
         }
         return null; // Giá trị mặc định nếu không hợp lệ
     }

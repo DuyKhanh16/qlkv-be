@@ -19,7 +19,7 @@ public interface CustomerRepo extends JpaRepository<Customer, Integer> {
 
     Optional<Customer> findByAbbreviationAndName(String abbreviation, String name);
 
-    @Query("SELECT c FROM Customer c INNER JOIN Project p On c.id = p.projectOwnerId WHERE c.id = :id")
+    @Query("SELECT c FROM Customer c left JOIN Project p On c.id = p.projectOwnerId WHERE c.id = :id")
     Customer findRelationshipProject(@Param("id") int id);
 
     @Query("select c.id as id, c.name as name , c.abbreviation as abbreviation from Customer c")

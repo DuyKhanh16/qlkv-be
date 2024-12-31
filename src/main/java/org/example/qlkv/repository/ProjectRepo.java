@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public interface ProjectRepo extends JpaRepository<Project, Integer> {
 
-    @Query("Select p.id as id , p.projectName as projectName ,p.projectNo as projectNo,p.startDate as startDate,p.endDate as endDate,p.budget budget,p.ccy as ccy,p.legalRecord as legalRecord,p.recentValue as recentValue,p.quantity as quantity,p.projectLocation as projectLocation,p.unit as unit,p.description as description,p.status as status,c.name as name,t.name as nameType from Project p  join Customer c on p.projectOwnerId=c.id  join ProjectType t on p.projectTypeId=t.id order by p.inputedDate DESC ")
+    @Query("Select p.id as id , p.projectName as projectName ,p.projectNo as projectNo,p.startDate as startDate,p.endDate as endDate,p.budget budget,p.ccy as ccy,p.legalRecord as legalRecord,p.recentValue as recentValue,p.quantity as quantity,p.projectLocation as projectLocation,p.unit as unit,p.description as description,p.status as status,c.name as name,t.name as nameType from Project p  left join Customer c on p.projectOwnerId=c.id left join ProjectType t on p.projectTypeId=t.id order by p.inputedDate DESC ")
     List<Tuple> getallProjectRalationShip();
 
     Project findByProjectNo(String projectNo);

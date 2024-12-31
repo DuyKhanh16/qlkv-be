@@ -21,7 +21,7 @@ import javax.crypto.spec.SecretKeySpec;
 @Controller
 @EnableAutoConfiguration
 public class SecurityConfig {
-    private final  String[] PUBLIC_ENDPOINTS = {"/auth/api/user/login"};
+    private final  String[] PUBLIC_ENDPOINTS = {"/auth/api/user/login","/auth/api/user/create"};
 
     @Value("${jwt.signerKey}")
     private String SIGNER_KEY;
@@ -30,7 +30,7 @@ public class SecurityConfig {
        httpSecurity
                .csrf(AbstractHttpConfigurer::disable)
                .authorizeHttpRequests(request ->
-               request.requestMatchers( PUBLIC_ENDPOINTS).permitAll()
+               request.requestMatchers(PUBLIC_ENDPOINTS).permitAll()
                        .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
                        .anyRequest().authenticated()
        );
